@@ -3,8 +3,8 @@ import './App.css'
 import Toolbar from './Components/Toolbar'
 import Sidebar from './Components/Sidebar'
 
-const WIDTH_ACTIVITY_BOX = 120
-const HEIGHT_ACTIVITY_BOX = 60
+const ACTIVITY_BOX_WIDTH = 120
+const ACTIVITY_BOX_HEIGHT = 60
 const ACTIVITY_BOX_COLOR = 'blue'
 const WIDTH_DESICION_BOX = 60
 const HEIGHT_DESICION_BOX = 60
@@ -21,8 +21,8 @@ class App extends Component {
         {
           x: X_STARTING_POINT,
           y: Y_STARTING_POINT,
-          width: WIDTH_ACTIVITY_BOX,
-          height: HEIGHT_ACTIVITY_BOX,
+          width: ACTIVITY_BOX_WIDTH,
+          height: ACTIVITY_BOX_HEIGHT,
           task: 'activity',
           color: ACTIVITY_BOX_COLOR,
         },
@@ -47,7 +47,6 @@ class App extends Component {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.fillStyle = 'white'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
-
       //draw boxes
       for (let shape of this.state.items) {
         ctx.fillStyle = shape.color
@@ -68,12 +67,12 @@ class App extends Component {
     let refIndex = this.state.items.length - 1
     let { x, y, task } = this.state.items[refIndex]
     let spacing = task === 'decision' ? 50 : 100
-    let length = task === 'decision' ? 60 : 120
+    let length = task === 'decision' ? WIDTH_DESICION_BOX : ACTIVITY_BOX_WIDTH
     let newItem = {
       x: x + length + spacing,
       y: 100,
-      width: WIDTH_ACTIVITY_BOX,
-      height: HEIGHT_ACTIVITY_BOX,
+      width: ACTIVITY_BOX_WIDTH,
+      height: ACTIVITY_BOX_HEIGHT,
       task: 'activity',
       color: ACTIVITY_BOX_COLOR,
     }
@@ -126,14 +125,13 @@ class App extends Component {
     )
   }
   remove() {
-    // first test doesnt allow the user to remove the first task
+    // first statement doesnt allow the user to remove the first task
     if (this.state.items.length <= 1) {
       return
     }
     let newItems = [...this.state.items]
     let newLines = [...this.state.lines]
     newItems.pop()
-    console.log(newItems)
     newLines.pop()
     this.setState(
       {
@@ -142,19 +140,17 @@ class App extends Component {
         decisionOption: true,
       },
       () => {
-        console.log('now')
         this.draw()
       }
     )
   }
 
   save() {
-    console.log('save firing')
-  }
+      window.localStorage.setItem('canvas-memory', JSON.stringify(this.state))
+    }
 
   componentDidMount() {
     this.draw()
-
     // window.addEventListener('click', function (event) {
     //   console.log(event)
     // })
