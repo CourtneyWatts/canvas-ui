@@ -9,6 +9,8 @@ const ACTIVITY_BOX_COLOR = 'blue'
 const WIDTH_DESICION_BOX = 60
 const HEIGHT_DESICION_BOX = 60
 const DESICION_BOX_COLOR = 'green'
+const X_STARTING_POINT = 10
+const Y_STARTING_POINT = 100
 
 class App extends Component {
   constructor(props) {
@@ -17,8 +19,8 @@ class App extends Component {
       decisionOption: true,
       items: [
         {
-          x: 10,
-          y: 100,
+          x: X_STARTING_POINT,
+          y: Y_STARTING_POINT,
           width: WIDTH_ACTIVITY_BOX,
           height: HEIGHT_ACTIVITY_BOX,
           task: 'activity',
@@ -124,6 +126,7 @@ class App extends Component {
     )
   }
   remove() {
+    // first test doesnt allow the user to remove the first task
     if (this.state.items.length <= 1) {
       return
     }
@@ -152,9 +155,9 @@ class App extends Component {
   componentDidMount() {
     this.draw()
 
-    window.addEventListener('click', function (event) {
-      console.log(event)
-    })
+    // window.addEventListener('click', function (event) {
+    //   console.log(event)
+    // })
   }
   render() {
     return (
