@@ -1,0 +1,38 @@
+.Sidebar {
+  background-color: white;
+  border: 1px solid;
+  .Sidebar-items {
+    overflow: auto;
+    height: 475px;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    li:first-child {
+      border-top: 1px solid grey;
+    }
+  }
+  .Activity {
+    padding: 10px 20px;
+    // border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+  }
+  input {
+    padding: 8px 10px;
+    border-radius: 3px;
+    border: 1px solid grey;
+    outline: none;
+
+    &:focus {
+      border: 1px solid grey;
+    }
+    &:active {
+      border: 1px solid grey;
+    }
+    &:hover {
+      border: 1px solid grey;
+    }
+  }
+}

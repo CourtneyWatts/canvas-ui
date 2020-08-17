@@ -1,0 +1,33 @@
+.Toolbar {
+  border: 1px solid;
+  padding: 20px;
+  margin-left: 12px;
+  margin-right: 139px;
+  width: 802px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: none;
+  background-color: #dadada;
+  .btn {
+    border-radius: 5px;
+    font-weight: 800;
+    background-color: white;
+    font-size: 16px;
+    padding: 10px;
+    margin-right: 1em;
+    transition: all 0.3s ease 0s;
+    &:hover {
+      color: white;
+      background-color: black;
+    }
+  }
+  .btn.special {
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    &:hover {
+      background-color: #2ee59d;
+      box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+      color: #fff;
+      transform: translateY(2px);
+    }
+  }
+}
