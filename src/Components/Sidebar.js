@@ -14,8 +14,9 @@ class Sidebar extends Component {
   }
   render() {
     let { items } = this.props
-    let filteredList = items.filter((el) => el.task.indexOf(this.state.searchText) !== -1)
-    console.log(filteredList)
+    let filteredList = items.filter(
+      (el) => el.task.indexOf(this.state.searchText.toLowerCase()) !== -1
+    )
     let list = filteredList.map((item, idx) => {
       return (
         <li key={idx} className='Activity'>
@@ -26,7 +27,7 @@ class Sidebar extends Component {
 
     return (
       <div className='Sidebar'>
-        <div className='Sidebar-search mt-3'>
+        <div className='Sidebar-search mt-4'>
           <input
             onChange={this.handleChange}
             value={this.state.searchText}
