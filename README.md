@@ -1,3 +1,21 @@
+## Canvas UI/ Flow chart creator
+
+### Features
+*Add Activity and or a Decision to your flow chart.*
+
+*Undo - will remove the last added entry.*
+
+*Sidebar is populated with each added task. Sidebar features a search function.*
+
+PLUS more features coming,
+- manipulate the layout by dragging and rearranging tasks 
+- save to local storage
+- and more
+
+
+### Desktop view
+<img src="images/desktop-view.jpg">
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
