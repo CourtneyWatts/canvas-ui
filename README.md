@@ -12,6 +12,7 @@ PLUS more features coming,
 - save to local storage
 - and more
 
+Hosted at: https://courtneywatts.github.io/canvas-ui/
 
 ### Desktop view
 <img src="images/desktop-view.jpg">
