@@ -201,7 +201,6 @@ class App extends Component {
               id='myCanvas'
               width='800'
               height='500'
-              style={{ border: '1px solid' }}
             ></canvas>
           </div>
           <div className='main col-3'>

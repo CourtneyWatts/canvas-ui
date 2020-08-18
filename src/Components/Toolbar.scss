@@ -1,13 +1,15 @@
 .Toolbar {
-  border: 1px solid;
   padding: 20px;
-  margin-left: 12px;
+  margin-left: 13px;
   margin-right: 139px;
-  width: 802px;
+  width: 800px;
   display: flex;
   justify-content: space-between;
   border-bottom: none;
   background-color: #dadada;
+  border-radius: 5px 5px 0px 0px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
+
   .btn {
     border-radius: 5px;
     font-weight: 800;
