@@ -16,18 +16,22 @@ class Sidebar extends Component {
     let list
     let { items } = this.props
     if (!items) {
-      console.log('no items')
+      list = <div className='Placeholder'>Add an activity</div>
     } else {
       let filteredList = items.filter(
         (el) => el.task.indexOf(this.state.searchText.toLowerCase()) !== -1
       )
-      list = filteredList.map((item, idx) => {
-        return (
-          <li key={idx} className='Activity'>
-            Task: {item.task}, [x:{item.x},y:{item.y}]
-          </li>
-        )
-      })
+      if (filteredList.length === 0) {
+        list = <div className='No-results'>No tasks found</div>
+      } else {
+        list = filteredList.map((item, idx) => {
+          return (
+            <li key={idx} className='Activity'>
+              Task: {item.task}, [x:{item.x},y:{item.y}]
+            </li>
+          )
+        })
+      }
     }
 
     return (

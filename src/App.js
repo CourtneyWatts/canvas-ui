@@ -16,7 +16,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      decisionOption: true,
+      decisionOption: false,
     }
     this.draw = this.draw.bind(this)
     this.addActivity = this.addActivity.bind(this)
@@ -33,7 +33,6 @@ class App extends Component {
       ctx.fillStyle = 'white'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
       //draw boxes
-
       if (this.state.items) {
         let number = 0
         for (let shape of this.state.items) {
@@ -78,6 +77,7 @@ class App extends Component {
             lineTo: [130, 130],
           },
         ],
+        decisionOption: true,
       },
       () => {
         this.draw()
@@ -155,6 +155,7 @@ class App extends Component {
     )
   }
   remove() {
+    let decisionOption
     // first statement doesnt allow the user to remove the first task
     if (this.state.items.length <= 0) {
       return
@@ -163,11 +164,20 @@ class App extends Component {
     let newLines = [...this.state.lines]
     newItems.pop()
     newLines.pop()
+    console.log(newItems)
+    if (
+      this.state.items.length === 1 ||
+      newItems[newItems.length - 1].task === 'decision'
+    ) {
+      decisionOption = false
+    } else {
+      decisionOption = true
+    }
     this.setState(
       {
         items: [...newItems],
         lines: [...newLines],
-        decisionOption: true,
+        decisionOption: decisionOption,
       },
       () => {
         this.draw()
@@ -181,9 +191,6 @@ class App extends Component {
 
   componentDidMount() {
     this.draw()
-    // window.addEventListener('click', function (event) {
-    //   console.log(event)
-    // })
   }
   render() {
     return (

@@ -26,35 +26,34 @@ class Toolbar extends Component {
   }
 
   render() {
-    if (true) {
-      return (
-        <div className='Toolbar'>
-          <div className='Toolbar-add-options'>
-            <div onClick={this.handleActivityClick} className='btn special'>
-              Add Activity
-            </div>
-            <div
-              onClick={
-                this.props.decisionEnabled ? this.handleDecisionClick : null
-              }
-              className='btn special'
-            >
-              Add Decision
-            </div>
+    const { decisionEnabled } = this.props
+    return (
+      <div className='Toolbar'>
+        <div className='Toolbar-add-options'>
+          <div onClick={this.handleActivityClick} className='btn special'>
+            Add Activity
           </div>
-          <div className='Toolbar-edit-options'>
-            <div onClick={this.handleRemove} className='btn'>
-              Undo
-            </div>
-            <div onClick={this.handleSave} className='btn mr-0'>
-              Save
-            </div>
+          <div
+            onClick={
+              decisionEnabled ? this.handleDecisionClick : null
+            }
+            className={`btn special ${
+              decisionEnabled ? '' : 'disabled'
+            }`}
+          >
+            Add Decision
           </div>
         </div>
-      )
-    } else {
-      return <div>test</div>
-    }
+        <div className='Toolbar-edit-options'>
+          <div onClick={this.handleRemove} className='btn'>
+            Undo
+          </div>
+          <div onClick={this.handleSave} className='btn mr-0'>
+            Save
+          </div>
+        </div>
+      </div>
+    )
   }
 }
 

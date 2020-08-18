@@ -31,5 +31,16 @@
       color: #fff;
       transform: translateY(2px);
     }
+    &.disabled {
+      transform: none;
+      background-color: grey;
+      transition: none;
+      &:hover {
+        background-color: grey;
+        box-shadow: none;
+        transform: none;
+        color: black;
+      }
+    }
   }
 }
