@@ -111,6 +111,9 @@ class App extends Component {
   }
 
   addDecision() {
+    if (!this.state.items || this.state.items.length <= 0) {
+      return
+    }
     let { items, lines } = this.state
     let refIndex = this.state.items.length - 1
     let { x, y, width, height, task } = this.state.items[refIndex]
