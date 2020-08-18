@@ -13,17 +13,22 @@ class Sidebar extends Component {
     this.setState({ searchText: evt.target.value })
   }
   render() {
+    let list
     let { items } = this.props
-    let filteredList = items.filter(
-      (el) => el.task.indexOf(this.state.searchText.toLowerCase()) !== -1
-    )
-    let list = filteredList.map((item, idx) => {
-      return (
-        <li key={idx} className='Activity'>
-          Task: {item.task}, [x:{item.x},y:{item.y}]
-        </li>
+    if (!items) {
+      console.log('no items')
+    } else {
+      let filteredList = items.filter(
+        (el) => el.task.indexOf(this.state.searchText.toLowerCase()) !== -1
       )
-    })
+      list = filteredList.map((item, idx) => {
+        return (
+          <li key={idx} className='Activity'>
+            Task: {item.task}, [x:{item.x},y:{item.y}]
+          </li>
+        )
+      })
+    }
 
     return (
       <div className='Sidebar'>

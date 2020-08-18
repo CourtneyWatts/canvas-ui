@@ -17,28 +17,13 @@ class App extends Component {
     super(props)
     this.state = {
       decisionOption: true,
-      items: [
-        {
-          x: X_STARTING_POINT,
-          y: Y_STARTING_POINT,
-          width: ACTIVITY_BOX_WIDTH,
-          height: ACTIVITY_BOX_HEIGHT,
-          task: 'activity',
-          color: ACTIVITY_BOX_COLOR,
-        },
-      ],
-      lines: [
-        {
-          startPoint: [130, 130],
-          lineTo: [130, 130],
-        },
-      ],
     }
     this.draw = this.draw.bind(this)
     this.addActivity = this.addActivity.bind(this)
     this.addDecision = this.addDecision.bind(this)
     this.remove = this.remove.bind(this)
     this.save = this.save.bind(this)
+    this.addFirstActivity = this.addFirstActivity.bind(this)
   }
   draw() {
     const canvas = document.getElementById('myCanvas')
@@ -48,21 +33,54 @@ class App extends Component {
       ctx.fillStyle = 'white'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
       //draw boxes
-      for (let shape of this.state.items) {
-        ctx.fillStyle = shape.color
-        ctx.fillRect(shape.x, shape.y, shape.width, shape.height)
-      }
-      //draw lines
-      for (let i = 0; i < this.state.lines.length; i++) {
-        let { startPoint, lineTo } = this.state.lines[i]
-        ctx.beginPath()
-        ctx.moveTo(...startPoint)
-        ctx.lineTo(...lineTo)
-        ctx.stroke()
+
+      if (this.state.items) {
+        for (let shape of this.state.items) {
+          ctx.fillStyle = shape.color
+          ctx.fillRect(shape.x, shape.y, shape.width, shape.height)
+        }
+        //draw lines
+        for (let i = 0; i < this.state.lines.length; i++) {
+          let { startPoint, lineTo } = this.state.lines[i]
+          ctx.beginPath()
+          ctx.moveTo(...startPoint)
+          ctx.lineTo(...lineTo)
+          ctx.stroke()
+        }
       }
     }
   }
+  addFirstActivity() {
+    this.setState(
+      {
+        items: [
+          {
+            x: X_STARTING_POINT,
+            y: Y_STARTING_POINT,
+            width: ACTIVITY_BOX_WIDTH,
+            height: ACTIVITY_BOX_HEIGHT,
+            task: 'activity',
+            color: ACTIVITY_BOX_COLOR,
+          },
+        ],
+        lines: [
+          {
+            startPoint: [130, 130],
+            lineTo: [130, 130],
+          },
+        ],
+      },
+      () => {
+        this.draw()
+      }
+    )
+  }
   addActivity() {
+    console.log(this.state.items)
+    if (!this.state.items || this.state.items.length <= 0) {
+      this.addFirstActivity()
+      return
+    }
     let { items, lines } = this.state
     let refIndex = this.state.items.length - 1
     let { x, y, task } = this.state.items[refIndex]
@@ -126,7 +144,7 @@ class App extends Component {
   }
   remove() {
     // first statement doesnt allow the user to remove the first task
-    if (this.state.items.length <= 1) {
+    if (this.state.items.length <= 0) {
       return
     }
     let newItems = [...this.state.items]
@@ -146,8 +164,8 @@ class App extends Component {
   }
 
   save() {
-      window.localStorage.setItem('canvas-memory', JSON.stringify(this.state))
-    }
+    window.localStorage.setItem('canvas-memory', JSON.stringify(this.state))
+  }
 
   componentDidMount() {
     this.draw()
