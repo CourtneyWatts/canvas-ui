@@ -35,12 +35,17 @@ class App extends Component {
       //draw boxes
 
       if (this.state.items) {
+        let number = 0
         for (let shape of this.state.items) {
           if (shape.task === 'decision') {
             ctx.strokeRect(shape.x, shape.y, shape.width, shape.height)
           } else {
+            number++
             ctx.fillStyle = shape.color
             ctx.fillRect(shape.x, shape.y, shape.width, shape.height)
+            ctx.fillStyle = 'white'
+            ctx.font = 'bold 16px Courier'
+            ctx.fillText(`Activity ${number}`, shape.x + 10, shape.y + 30)
           }
         }
         //draw lines
