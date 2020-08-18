@@ -6,8 +6,8 @@ import Sidebar from './Components/Sidebar'
 const ACTIVITY_BOX_WIDTH = 120
 const ACTIVITY_BOX_HEIGHT = 60
 const ACTIVITY_BOX_COLOR = 'blue'
-const WIDTH_DESICION_BOX = 60
-const HEIGHT_DESICION_BOX = 60
+const WIDTH_DESICION_BOX = 40
+const HEIGHT_DESICION_BOX = 40
 const DESICION_BOX_COLOR = 'green'
 const X_STARTING_POINT = 10
 const Y_STARTING_POINT = 100
@@ -36,8 +36,12 @@ class App extends Component {
 
       if (this.state.items) {
         for (let shape of this.state.items) {
-          ctx.fillStyle = shape.color
-          ctx.fillRect(shape.x, shape.y, shape.width, shape.height)
+          if (shape.task === 'decision') {
+            ctx.strokeRect(shape.x, shape.y, shape.width, shape.height)
+          } else {
+            ctx.fillStyle = shape.color
+            ctx.fillRect(shape.x, shape.y, shape.width, shape.height)
+          }
         }
         //draw lines
         for (let i = 0; i < this.state.lines.length; i++) {
@@ -124,7 +128,7 @@ class App extends Component {
     let spacing = 100
     let newItem = {
       x: x + 60 + spacing,
-      y: 100,
+      y: 110,
       width: WIDTH_DESICION_BOX,
       height: HEIGHT_DESICION_BOX,
       task: 'decision',
@@ -197,11 +201,7 @@ class App extends Component {
               remove={this.remove}
               save={this.save}
             />
-            <canvas
-              id='myCanvas'
-              width='800'
-              height='500'
-            ></canvas>
+            <canvas id='myCanvas' width='800' height='500'></canvas>
           </div>
           <div className='main col-3'>
             <Sidebar items={this.state.items} />
